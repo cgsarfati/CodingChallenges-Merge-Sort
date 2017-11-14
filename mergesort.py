@@ -9,7 +9,40 @@
 
 
 def merge_sort(lst):
-    """Divide and conquer: reduce to lists of 0-1 items, then recombine."""
+    """Divide and conquer strategy."""
+
+    # Reduce to lists of 0-1 items
+    if len(lst) > 1:
+        mid = len(lst) // 2
+        left = lst[:mid]
+        right = lst[mid:]
+
+        merge_sort(left)
+        merge_sort(right)
+
+        # Initialize
+        left_index = right_index = new_index = 0
+
+        # Interleave lists together
+        while left_index < len(left) and right_index < len(right):
+            if left[left_index] < right[right_index]:
+                lst[new_index] = left[left_index]
+                left_index += 1
+            else:
+                lst[new_index] = right[right_index]
+                right_index += 1
+            new_index += 1
+
+        # If lists were uneven length, add remainder of longer list
+        while left_index < len(left):
+            lst[new_index] = left[left_index]
+            left_index += 1
+            new_index += 1
+
+        while right_index < len(right):
+            lst[new_index] = right[right_index]
+            right_index += 1
+            new_index += 1
 
 if __name__ == '__main__':
     import doctest
