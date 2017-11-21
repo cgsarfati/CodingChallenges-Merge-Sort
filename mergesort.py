@@ -17,8 +17,8 @@ def merge_sort(lst):
         left = lst[:mid]
         right = lst[mid:]
 
-        merge_sort(left)
-        merge_sort(right)
+        merge_sort(left)  # Change left lst in place
+        merge_sort(right)  # Change right lst in place
 
         # Initialize
         left_index = right_index = new_index = 0
